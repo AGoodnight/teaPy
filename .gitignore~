@@ -1,4 +1,4 @@
 venv
-__pycache__
-microservice/**/__pycache__
+tea/microservice/__pycache__
+tea/microservice/*/__pycache__
 
