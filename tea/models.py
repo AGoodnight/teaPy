@@ -21,6 +21,7 @@ class Tea(AbstractConcreteBase, Base):
 
 class BlackTea(Tea):
     __tablename__ = 'black'
+    flavors = Column(String)
 
 class GreenTea(Tea):
     __tablename__ = 'green'

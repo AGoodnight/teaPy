@@ -13,7 +13,8 @@ def create_list(model):
         list.append({
             'id':instance.id,
             'name':instance.name,
-            'origin':instance.origin.country
+            'origin':instance.origin.country,
+            'flavors':instance.flavors
         })
     return list
 
@@ -35,16 +36,49 @@ def get_all_tea(request):
 def get_black_tea(request):
     return create_list(BlackTea)
 
+@view_config(route_name='green_tea', request_method='GET', renderer='json')
+def get_green_tea(request):
+    return create_list(GreenTea)
+
+@view_config(route_name='white_tea', request_method='GET', renderer='json')
+def get_white_tea(request):
+    return create_list(WhiteTea)
+
+@view_config(route_name='red_tea', request_method='GET', renderer='json')
+def red_tea(request):
+    return create_list(RedTea)
+
 @view_config(route_name='herbal_tea', request_method='GET', renderer='json')
 def get_herbal_tea(request):
     return create_list(HerbalTea)
+
+@view_config(route_name='flavors', request_method='GET', renderer='json')
+def get_black_flavors(request):
+    session = Session().session
+    list = []
+    for instance in session.query(BlackTea.flavors).distinct():
+        list.append(instance[0])
+
+    uniques = []
+    for value in list:
+        items = value.split(',')
+        for item in items:
+            if item.strip() not in uniques:
+                uniques.append(item.strip())
+
+    return uniques
+
 
 if __name__ == '__main__':
 
     with Configurator() as config:
         config.add_route('hello','/')
         config.add_route('all_tea','/tea')
+        config.add_route('flavors','/flavors')
         config.add_route('black_tea','/tea/black')
+        config.add_route('green_tea','/tea/green')
+        config.add_route('red_tea','/tea/red')
+        config.add_route('white_tea','/tea/white')
         config.add_route('herbal_tea','/tea/herbal')
         config.scan()
         app = config.make_wsgi_app()
