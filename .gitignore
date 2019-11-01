@@ -1,5 +1,4 @@
 venv
-tea/microservice/__pycache__
-tea/microservice/*/__pycache__
-_tea
-
+tea/__pycache__
+tea/*/__pycache__
+tea.egg-info
