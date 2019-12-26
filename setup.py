@@ -15,7 +15,7 @@ requires = [
     'zope.sqlalchemy==1.1',
     'deform==2.0.7',
     'colander==1.7.0',
-    'waitress==1.3.0',
+    'waitress==1.4.1',
     'pytest==5.1.2',
     'requests==2.22.0',
     'python-json-logger==0.1.11'
