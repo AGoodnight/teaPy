@@ -17,7 +17,7 @@ requires = [
     'colander==1.7.0',
     'waitress==1.3.0',
     'pytest==5.1.2',
-    'requests==2.22.0',
+    'requests==2.31.0',
     'python-json-logger==0.1.11'
 ]
 
